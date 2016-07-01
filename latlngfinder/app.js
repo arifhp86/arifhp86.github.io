@@ -22,8 +22,8 @@ map.addMarker({
 		updateDom(e, 'position');
 	},
 	infoWindow: {
-		content: '<p>Zoom the map and drag the marker to find your desired lat and lng</p>',
-		maxWidth: 180,
+		content: '<p><strong>Zoom</strong> the map and <strong>drag</strong> the marker to find your Latitude and Longitude of a place.</p>',
+		maxWidth: 200,
 		disableAutoPan: true
 	},
 	draggable: true,
