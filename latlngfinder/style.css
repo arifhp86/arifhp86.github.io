@@ -2,10 +2,16 @@ form {
 	margin-bottom: 1em;
 }
 #address {
-	min-width: 250px;
+	min-width: 300px;
 }
 .lat, .lng {
 	display: inline-block;
 	min-width: 200px;
 	width: auto;
+}
+footer {
+	padding: 2em 0;
+}
+footer .glyphicon {
+	color: red;
 }
