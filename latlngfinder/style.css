@@ -1,0 +1,11 @@
+form {
+	margin-bottom: 1em;
+}
+#address {
+	min-width: 250px;
+}
+.lat, .lng {
+	display: inline-block;
+	min-width: 200px;
+	width: auto;
+}
