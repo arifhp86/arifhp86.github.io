@@ -1,0 +1,117 @@
+/*typography*/
+body {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+}
+/*layout*/
+.todolist .todoitem {
+	padding: 24px 0;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	margin-bottom: 10px;
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	/*box-shadow: 0 -3px 20px rgba(0,0,0,0.15), 0 3px 5px rgba(0,0,0,0.12);*/
+}
+.todolist .todoitem:hover {
+	box-shadow: 0 2px 20px rgba(0,0,0,0.15), 0 3px 3px rgba(0,0,0,0.12);
+}
+.todolist .done {
+	background-color: #fcfcfc;
+	color: #bdbdbd;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
+}
+.todolist .done:hover {
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);	
+}
+.todoitem .text {
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 700;
+}
+.done .text {
+	text-decoration: line-through;
+
+}
+.todoitem .priority {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding-top: 4px;
+	position: relative;
+}
+.todoitem .priority:before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 0;
+	height: 100%;
+	width: 8px;
+	background-color: red;
+}
+.todoitem .important:before {
+	background-color: #4F78A4;
+}
+.todoitem .very-important:before {
+	background-color: orange;
+}
+.todoitem .urgent:before {
+	background-color: red;
+}
+.todoitem .status {
+	text-align: right;
+}
+.delete-item {
+	margin-right: 10px;
+	color: red;
+}
+.complete-item {
+	color: #4F78A4;
+}
+#form1 {
+	position: relative;
+}
+#form1 input[type="text"] {
+	display: block;
+	height: 100%;
+	width: 100%;
+	padding: 24px 15px;
+	border: none;
+	background-color: #eee;
+	padding-right: 190px;
+}
+#form1 input[type="text"]:focus {
+	outline: none;
+}
+#form1 select {
+	position: absolute;
+  top: 50%;
+  right: 83px;
+  transform: translate(0, -50%);
+  border: none;
+  padding: 5px;
+  background-color: #fff;
+}
+#form1 select:focus {
+	outline: 0;
+}
+#form1 a {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	background-color: #eee;
+	padding: 24px 24px;
+	vertical-align: middle;
+	background-color: #4F78A4;
+	color: #fff;
+	font-weight: bold;
+}
+#form1 a:hover,
+#form1 a:focus
+ {
+	text-decoration: none;
+}
+/*general*/
+.no-float {
+	float: none;
+}
