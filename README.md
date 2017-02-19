@@ -6,3 +6,4 @@ Find necessary latitude and longitude for you current project. Drag and drop the
 #### AngularJS Todo App
 Refresh the app after adding few todo item to see the power of html5 **__Local Storage__**.<br />
 **[Demo](http://arifhp86.github.io/todo/)**
+
