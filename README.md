@@ -7,3 +7,6 @@ Find necessary latitude and longitude for you current project. Drag and drop the
 Refresh the app after adding few todo item to see the power of html5 **__Local Storage__**.<br />
 **[Demo](http://arifhp86.github.io/todo/)**
 
+#### LetterCounterUp
+Count up to the letter to make a word or sentence
+
