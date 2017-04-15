@@ -8,5 +8,6 @@ Refresh the app after adding few todo item to see the power of html5 **__Local S
 **[Demo](http://arifhp86.github.io/todo/)**
 
 #### LetterCounterUp
-Count up to the letter to make a word or sentence
+Count up to the letter to make a word or sentence<br />
+**[Demo](Http://arifhp86.github.io/lettercounterup/)
 
