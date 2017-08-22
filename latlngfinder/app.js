@@ -1,86 +1,46 @@
-$(document).ready(function() {
-
-var map = new GMaps({
-	div: '#map',
-	lat: 0,
-	lng: 0,
-	zoom: 1,
-	click: function(e) {
-		console.log('Lat: ' + e.latLng.lat() + ' Lng: ' + e.latLng.lng());
-	},
-	dragend: function(e) {
-		//console.log(e);
+(function() {
+	var position = {lat: '', lng: ''};
+	function updateDom() {
+		$('.lat').val(position.lat);
+		$('.lng').val(position.lng);
 	}
-});
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 0, lng: 0},
+			zoom: 1
+		});
 
-map.addMarker({
-	lat: 0,
-	lng: 0,
-	// title: 'Drag it!',
-	click: function(e) {
-		// console.log('Lat: ' + e.position.lat() + ' Lng: ' + e.position.lng());
-		updateDom(e, 'position');
-	},
-	infoWindow: {
-		content: '<p><strong>Zoom</strong> the map and <strong>drag</strong> the marker to find your Latitude and Longitude of a place.</p>',
-		maxWidth: 200,
-		disableAutoPan: true
-	},
-	draggable: true,
-	dragend: function(e) {
-		// console.log('Lat: ' + e.latLng.lat() + ' Lng: ' + e.latLng.lng());
-		updateDom(e, 'latLng');
-	},
-	animation: google.maps.Animation.DROP
+		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'), {});
+		var marker = new google.maps.Marker({
+			map: map,
+			anchorPoint: new google.maps.Point(0, -29),
+			animation: google.maps.Animation.DROP,
+			draggable: true
+		});
+		autocomplete.addListener('place_changed', function() {
+			var place = autocomplete.getPlace();
+			position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
 
-});
-
-$('form').on('submit', function(e) {
-
-	GMaps.geocode({
-		address: $('#address').val(),
-		callback: function(results, status) {
-			if (status == 'OK') {
-				var latlng = results[0].geometry.location;
-				updateDom(results[0].geometry, 'location');
-				map.setCenter(latlng.lat(), latlng.lng());
-				map.setZoom(5);
-				map.addMarker({
-					lat: latlng.lat(),
-					lng: latlng.lng(),
-					draggable: true,
-					dragend: function(e) {
-						// console.log('Lat: ' + e.latLng.lat() + ' Lng: ' + e.latLng.lng());
-						updateDom(e, 'latLng');
-					},
-					animation: google.maps.Animation.DROP,
-					click: function(e) {
-						// console.log('Lat: ' + e.position.lat() + ' Lng: ' + e.position.lng());
-						updateDom(e, 'position');
-					},
-					infoWindow: {
-						content: '<p>Zoom the map and drag the marker to find your desired lat and lng</p>',
-						maxWidth: 180,
-						disableAutoPan: true
-					},
-				});
+			if(place.geometry.viewport) {
+				map.fitBounds(place.geometry.viewport);
+			} else {
+				map.setCenter(place.geometry.location);
+				map.setZoom(17);
 			}
-		}
+
+			marker.setPosition(place.geometry.location);
+			marker.setAnimation(google.maps.Animation.DROP);
+			updateDom();
+		});
+
+		marker.addListener('dragend', function(e) {
+			position = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+			updateDom();
+		});
+	}
+
+	google.maps.event.addDomListener(window, 'load', initMap);
+	$('.lat, .lng').on('click', function() {
+		$(this).select();
 	});
-	e.preventDefault();
-
-});
-
-function updateDom(e, position) {
-	$('.lat').val(e[position].lat());
-	$('.lng').val(e[position].lng());
-}
-
-$('.lat, .lng').on('click', function() {
-	$(this).select();
-});
-
-
-
-
-});
+})();
