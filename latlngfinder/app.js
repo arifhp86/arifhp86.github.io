@@ -7,7 +7,7 @@
 	function initMap() {
 		var map = new google.maps.Map(document.getElementById('map'), {
 			center: {lat: 0, lng: 0},
-			zoom: 1
+			zoom: 2
 		});
 
 		var autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'), {});
@@ -15,9 +15,11 @@
 			map: map,
 			anchorPoint: new google.maps.Point(0, -29),
 			animation: google.maps.Animation.DROP,
-			draggable: true
+			draggable: true,
+			cursor: 'grab'
 		});
 		autocomplete.addListener('place_changed', function() {
+			marker.setVisible(false);
 			var place = autocomplete.getPlace();
 			position = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
 
@@ -28,8 +30,12 @@
 				map.setZoom(17);
 			}
 
-			marker.setPosition(place.geometry.location);
+			marker.setVisible(true);
 			marker.setAnimation(google.maps.Animation.DROP);
+			setTimeout(function() {
+				marker.setPosition(place.geometry.location);
+			}, 1000);
+			
 			updateDom();
 		});
 
@@ -40,7 +46,7 @@
 	}
 
 	google.maps.event.addDomListener(window, 'load', initMap);
-	$('.lat, .lng').on('click', function() {
+	$('.lat, .lng, #address').on('click', function() {
 		$(this).select();
 	});
 })();
