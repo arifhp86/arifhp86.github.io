@@ -203,7 +203,6 @@
 		});
 
 		$('#add-show-btn').on('click', function(e) {
-
 			var htm = self.showFormTemp();
 			$('.show-form-wrapper').html(htm);
 		});
@@ -259,9 +258,11 @@
 
 		$('#empty').on('click', function(e) {
 			e.preventDefault();
-			window.localStorage.setItem('_iwatchedit', JSON.stringify({data: [], settings: {}}));
-			self.renderShowList(true);
-			self.$body.trigger('season:unfocus').trigger('episode:unfocus');
+			if(confirm('Are you sure you want to delete all show?')) {
+				window.localStorage.setItem('_iwatchedit', JSON.stringify({data: [], settings: {}}));
+				self.renderShowList(true);
+				self.$body.trigger('season:unfocus').trigger('episode:unfocus');	
+			}
 		})
 
 
